@@ -1,0 +1,5 @@
+*.class
+*.jar
+!app/lib/*.jar
+!app/projet.jar
+.DS_Store
