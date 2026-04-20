@@ -363,11 +363,19 @@ public class AnnonceurFrame extends JFrame {
             return;
         }
 
+        String[] methodesP = {"carte", "comptant", "paypal", "virement"};
+        String methodeP = (String) JOptionPane.showInputDialog(this,
+                "M\u00e9thode de paiement :", "Paiement",
+                JOptionPane.QUESTION_MESSAGE, null, methodesP, methodesP[0]);
+        if (methodeP == null) {
+            return;
+        }
+
         try (Connection conn = DatabaseConnection.getConnection()) {
             conn.setAutoCommit(false);
             try {
                 PropositionInfo proposition = getPropositionInfo(conn, idProposition);
-                creerVente(conn, proposition);
+                creerVente(conn, proposition, methodeP);
                 marquerProduitVendu(conn, proposition.idProduit);
                 changerStatutProposition(conn, idProposition, "acceptee");
                 refuserAutresPropositions(conn, proposition.idProduit, idProposition);
@@ -422,7 +430,7 @@ public class AnnonceurFrame extends JFrame {
         }
     }
 
-    private void creerVente(Connection conn, PropositionInfo proposition) throws Exception {
+    private void creerVente(Connection conn, PropositionInfo proposition, String methodeP) throws Exception {
         String existsSql = "SELECT COUNT(*) FROM vente WHERE id_proposition = ?";
         try (PreparedStatement stmt = conn.prepareStatement(existsSql)) {
             stmt.setInt(1, proposition.idProposition);
@@ -436,7 +444,7 @@ public class AnnonceurFrame extends JFrame {
 
         String insertSql = "INSERT INTO vente " +
                 "(id_vente, id_produit, id_acheteur, id_proposition, prix_final, date_vente, methode_paiement) " +
-                "VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP, 'a_confirmer')";
+                "VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?)";
 
         try (PreparedStatement stmt = conn.prepareStatement(insertSql)) {
             stmt.setInt(1, getNextId(conn, "vente", "id_vente"));
@@ -444,6 +452,7 @@ public class AnnonceurFrame extends JFrame {
             stmt.setInt(3, proposition.idAcheteur);
             stmt.setInt(4, proposition.idProposition);
             stmt.setBigDecimal(5, proposition.prixFinal);
+            stmt.setString(6, methodeP);
             stmt.executeUpdate();
         }
     }

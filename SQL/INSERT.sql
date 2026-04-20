@@ -752,3 +752,240 @@ INSERT INTO favori (id_acheteur,id_produit,date_ajout) VALUES
 	 (68,18,'2026-04-15 18:34:35.206349'),
 	 (69,47,'2026-04-15 18:34:35.206574'),
 	 (21,7,'2026-04-15 18:34:35.206797');
+
+-- =============================================
+-- Données supplémentaires pour atteindre 50+ occurrences par table
+-- =============================================
+
+-- 10 nouveaux utilisateurs (IDs 81-90) → servent d'annonceurs
+INSERT INTO utilisateur (id_utilisateur,nom,prenom,courriel,mot_de_passe,telephone,adresse,ville,province,code_postal,date_inscription) VALUES
+	 (81,'Tremblay','Marc','marc.tremblay81@mail.com','pass','+1-514-923-4567','123 Rue Sainte-Catherine, Apt 5','Montreal','QC','H3B 1A1','2026-01-10'),
+	 (82,'Bouchard','Sophie','sophie.bouchard82@mail.com','pass','+1-418-234-5678','456 Grande Allée, Apt 12','Quebec City','QC','G1R 2J5','2026-01-10'),
+	 (83,'Lavoie','Kevin','kevin.lavoie83@mail.com','pass','+1-450-345-6789','789 Boulevard Taschereau, Apt 3','Longueuil','QC','J4K 2T9','2026-01-10'),
+	 (84,'Gagnon','Amelie','amelie.gagnon84@mail.com','pass','+1-819-456-7890','321 Rue King, Apt 7','Sherbrooke','QC','J1H 1P1','2026-01-10'),
+	 (85,'Leblanc','Patrick','patrick.leblanc85@mail.com','pass','+1-905-567-8901','654 Yonge Street, Apt 20','Toronto','ON','M4Y 1Z7','2026-01-10'),
+	 (86,'Fortin','Isabelle','isabelle.fortin86@mail.com','pass','+1-604-678-9012','987 Robson Street, Apt 15','Vancouver','BC','V6Z 2E7','2026-01-10'),
+	 (87,'Cote','Julien','julien.cote87@mail.com','pass','+1-780-789-0123','147 Jasper Avenue, Apt 8','Edmonton','AB','T5J 1W8','2026-01-10'),
+	 (88,'Morin','Nathalie','nathalie.morin88@mail.com','pass','+1-403-890-1234','258 17 Avenue SW, Apt 11','Calgary','AB','T2T 0A9','2026-01-10'),
+	 (89,'Pelletier','Alexandre','alexandre.pelletier89@mail.com','pass','+1-506-901-2345','369 Main Street, Apt 4','Moncton','NB','E1C 1B9','2026-01-10'),
+	 (90,'Beaulieu','Chantal','chantal.beaulieu90@mail.com','pass','+1-902-012-3456','741 Spring Garden Road, Apt 9','Halifax','NS','B3J 3R5','2026-01-10');
+
+-- 10 nouveaux annonceurs (IDs 81-90) → total 50 annonceurs ✓
+INSERT INTO annonceur (id_annonceur,note_moyenne,nb_ventes) VALUES
+	 (81,4.20,5),
+	 (82,3.95,8),
+	 (83,4.55,12),
+	 (84,4.10,3),
+	 (85,4.75,20),
+	 (86,3.80,7),
+	 (87,4.30,15),
+	 (88,4.60,9),
+	 (89,3.70,2),
+	 (90,4.45,11);
+
+-- 40 nouveaux experts (IDs 20-59, utilisateurs déjà acheteurs) → total 50 experts ✓
+INSERT INTO expert (id_expert,domaine_expertise,nb_estimations,date_certification) VALUES
+	 (20,'Électronique',15,'2024-03-10'),
+	 (21,'Véhicules',22,'2023-07-22'),
+	 (22,'Mobilier',18,'2024-01-15'),
+	 (23,'Antiquités',31,'2022-11-08'),
+	 (24,'Bijouterie',27,'2023-05-30'),
+	 (25,'Art et décoration',19,'2024-02-14'),
+	 (26,'Mode et vêtements',12,'2024-04-01'),
+	 (27,'Sports et loisirs',24,'2023-09-17'),
+	 (28,'Instruments de musique',16,'2024-03-22'),
+	 (29,'Livres et collectibles',20,'2023-12-05'),
+	 (30,'Électronique',33,'2022-08-14'),
+	 (31,'Véhicules',28,'2023-03-20'),
+	 (32,'Mobilier',21,'2024-01-08'),
+	 (33,'Antiquités',14,'2024-04-10'),
+	 (34,'Bijouterie',35,'2022-06-25'),
+	 (35,'Art et décoration',17,'2023-10-12'),
+	 (36,'Mode et vêtements',29,'2023-02-18'),
+	 (37,'Sports et loisirs',11,'2024-03-05'),
+	 (38,'Instruments de musique',23,'2023-08-30'),
+	 (39,'Livres et collectibles',26,'2022-12-14'),
+	 (40,'Électronique',38,'2022-05-03'),
+	 (41,'Véhicules',19,'2023-11-27'),
+	 (42,'Mobilier',25,'2024-02-09'),
+	 (43,'Antiquités',30,'2023-04-16'),
+	 (44,'Bijouterie',22,'2023-07-08'),
+	 (45,'Art et décoration',28,'2022-09-20'),
+	 (46,'Mode et vêtements',16,'2024-01-30'),
+	 (47,'Sports et loisirs',34,'2022-07-11'),
+	 (48,'Instruments de musique',20,'2023-06-25'),
+	 (49,'Livres et collectibles',27,'2023-01-19'),
+	 (50,'Électronique',42,'2022-03-07'),
+	 (51,'Véhicules',31,'2023-09-14'),
+	 (52,'Mobilier',18,'2024-02-28'),
+	 (53,'Antiquités',24,'2023-05-21'),
+	 (54,'Bijouterie',29,'2022-11-03'),
+	 (55,'Art et décoration',15,'2024-03-18'),
+	 (56,'Mode et vêtements',33,'2022-08-26'),
+	 (57,'Sports et loisirs',21,'2023-07-04'),
+	 (58,'Instruments de musique',14,'2024-01-22'),
+	 (59,'Livres et collectibles',37,'2022-04-15');
+
+-- 40 nouvelles catégories (IDs 11-50) → total 50 catégories ✓
+INSERT INTO categorie (id_categorie,nom,description,categorie_parent) VALUES
+	 (11,'Livres','Livres de tous genres et formats',NULL),
+	 (12,'Sports et loisirs','Équipements sportifs et de plein air',NULL),
+	 (13,'Jouets et jeux','Jouets et jeux pour tous les âges',NULL),
+	 (14,'Instruments de musique','Instruments de musique et accessoires',NULL),
+	 (15,'Art et collections','Œuvres d''art, antiquités et collections',NULL),
+	 (16,'Outils et bricolage','Outils, quincaillerie et équipements de bricolage',NULL),
+	 (17,'Santé et beauté','Produits de santé et de beauté',NULL),
+	 (18,'Bébé et enfants','Produits pour bébés et enfants',NULL),
+	 (19,'Jardin et extérieur','Outils de jardin et mobilier extérieur',NULL),
+	 (20,'Informatique','Matériel informatique et accessoires',1),
+	 (21,'Tablettes','Tablettes et liseuses électroniques',1),
+	 (22,'Appareils photo','Appareils photo et équipements de photographie',1),
+	 (23,'Casques et audio','Casques, enceintes et équipements audio',1),
+	 (24,'Consoles de jeux','Consoles de jeux vidéo et accessoires',1),
+	 (25,'Montres connectées','Montres intelligentes et bracelets fitness',1),
+	 (26,'Téléphones Android','Smartphones Android',2),
+	 (27,'Téléphones iOS','iPhones et appareils iOS',2),
+	 (28,'Laptops gaming','Ordinateurs portables haute performance pour jeux',3),
+	 (29,'Laptops professionnels','Ordinateurs portables pour les affaires et la productivité',3),
+	 (30,'Canapés et sofas','Canapés, sofas et méridiences',4),
+	 (31,'Lits et matelas','Lits, matelas et sommiers',4),
+	 (32,'Bibliothèques et étagères','Bibliothèques et unités de rangement',4),
+	 (33,'Bureaux','Bureaux de travail et d''étude',4),
+	 (34,'Armoires et commodes','Armoires et commodes',4),
+	 (35,'Voitures','Voitures et berlines',7),
+	 (36,'Motos','Motos et scooters',7),
+	 (37,'Vélos','Vélos et vélos électriques',7),
+	 (38,'Vêtements hommes','Vêtements et tenues pour hommes',8),
+	 (39,'Vêtements femmes','Vêtements et tenues pour femmes',8),
+	 (40,'Électroménagers cuisine','Appareils de cuisine et ustensiles',10),
+	 (41,'Électroménagers lessive','Appareils de lavage et séchage',10),
+	 (42,'Romans et fiction','Romans et livres de fiction',11),
+	 (43,'Non-fiction','Livres non-fiction et éducatifs',11),
+	 (44,'Sports extérieurs','Équipements de sports extérieurs',12),
+	 (45,'Sports intérieurs','Équipements de salle de sport',12),
+	 (46,'Jeux de société','Jeux de société et jeux de cartes',13),
+	 (47,'Jeux vidéo','Jeux vidéo et accessoires gaming',13),
+	 (48,'Instruments à cordes','Instruments à cordes',14),
+	 (49,'Instruments à vent','Instruments à vent et cuivres',14),
+	 (50,'Outillage électrique','Outils électriques et équipements',16);
+
+-- 10 nouveaux produits (IDs 61-70) avec statut vendu → total 70 produits
+INSERT INTO produit (id_produit,titre,description,prix_souhaite,id_annonceur,id_categorie,condition_produit,statut,date_soumission,date_publication) VALUES
+	 (61,'iPhone 14 Pro','Excellent état, 256 Go, déverrouillé',950.00,81,2,'comme_neuf','vendu','2026-01-10','2026-01-12'),
+	 (62,'Table de salle à manger','Bois massif, 8 places, très bon état',600.00,82,6,'bon','vendu','2026-01-15','2026-01-17'),
+	 (63,'Toyota RAV4 2020','52 000 km, très bon état général',28000.00,83,7,'bon','vendu','2026-01-20','2026-01-22'),
+	 (64,'Veste en cuir noir','Taille L, cuir véritable, légère usure',250.00,84,8,'usage','vendu','2026-01-25','2026-01-27'),
+	 (65,'MacBook Air M1','Parfait état, 8 Go RAM, 256 Go SSD',800.00,85,3,'comme_neuf','vendu','2026-02-01','2026-02-03'),
+	 (66,'Chaise bureau ergonomique','Réglable, avec accoudoirs, bon état',180.00,86,5,'bon','vendu','2026-02-05','2026-02-07'),
+	 (67,'Samsung TV 65 pouces 4K','Très peu utilisé, écran parfait',700.00,87,1,'comme_neuf','vendu','2026-02-10','2026-02-12'),
+	 (68,'Réfrigérateur Samsung 600L','Double porte, fonctionne parfaitement',550.00,88,10,'bon','vendu','2026-02-15','2026-02-17'),
+	 (69,'Guitare acoustique Yamaha F310','Excellente pour débutants, cordes neuves',200.00,89,14,'usage','vendu','2026-02-20','2026-02-22'),
+	 (70,'Vélo de montagne Trek Marlin','21 vitesses, cadre aluminium, bon état',450.00,90,12,'bon','vendu','2026-02-25','2026-02-27');
+
+-- 10 nouvelles estimations (IDs 61-70) → total 70 estimations
+INSERT INTO estimation (id_estimation,id_produit,id_expert,prix_estime,commentaire,acceptee,date_decision) VALUES
+	 (61,61,5,900.00,'Très bon état, prix cohérent avec le marché',true,'2026-01-11'),
+	 (62,62,7,580.00,'Légères marques d''usage, valeur correcte',true,'2026-01-16'),
+	 (63,63,6,27000.00,'Kilométrage raisonnable pour l''année du véhicule',true,'2026-01-21'),
+	 (64,64,8,235.00,'Usure normale, cuir authentique confirmé',true,'2026-01-26'),
+	 (65,65,9,780.00,'Appareil en parfait état, batterie neuve',true,'2026-02-02'),
+	 (66,66,10,165.00,'Bon état mécanique, quelques marques d''usure',true,'2026-02-06'),
+	 (67,67,11,680.00,'Écran sans rayures, télécommande incluse',true,'2026-02-11'),
+	 (68,68,12,525.00,'Fonctionne parfaitement, joints en bon état',true,'2026-02-16'),
+	 (69,69,13,185.00,'Cordes récentes, table d''harmonie intacte',true,'2026-02-21'),
+	 (70,70,14,430.00,'Freins et dérailleur OK, pneus à surveiller',true,'2026-02-26');
+
+-- 10 nouvelles propositions (IDs 121-130) acceptées → total 130 propositions
+INSERT INTO proposition (id_proposition,id_produit,id_acheteur,prix_propose,message,date_proposition,statut) VALUES
+	 (121,61,20,950.00,'Très intéressé, je peux venir chercher demain.','2026-01-13 10:15:00','acceptee'),
+	 (122,62,22,600.00,'Belle table, je prends!','2026-01-18 14:30:00','acceptee'),
+	 (123,63,24,28000.00,'Je voudrais faire un essai routier avant d''acheter.','2026-01-23 09:45:00','acceptee'),
+	 (124,64,25,250.00,'La veste est encore disponible?','2026-01-28 16:20:00','acceptee'),
+	 (125,65,27,800.00,'MacBook encore disponible? Je l''achète immédiatement.','2026-02-04 11:00:00','acceptee'),
+	 (126,66,29,180.00,'Parfait pour mon bureau à domicile.','2026-02-08 13:45:00','acceptee'),
+	 (127,67,31,700.00,'Est-ce que la garantie est encore valide?','2026-02-13 10:30:00','acceptee'),
+	 (128,68,33,550.00,'Réfrigérateur toujours disponible?','2026-02-18 15:15:00','acceptee'),
+	 (129,69,35,200.00,'Parfait pour débuter la guitare!','2026-02-23 12:00:00','acceptee'),
+	 (130,70,37,450.00,'Vélo en bon état? Peut-on se rencontrer?','2026-02-28 09:30:00','acceptee');
+
+-- 10 nouvelles ventes (IDs 41-50) → total 50 ventes ✓
+INSERT INTO vente (id_vente,id_produit,id_acheteur,id_proposition,prix_final,date_vente,methode_paiement) VALUES
+	 (41,61,20,121,950.00,'2026-01-14 10:00:00','virement'),
+	 (42,62,22,122,600.00,'2026-01-19 14:00:00','comptant'),
+	 (43,63,24,123,28000.00,'2026-01-24 10:00:00','virement'),
+	 (44,64,25,124,250.00,'2026-01-29 15:00:00','carte'),
+	 (45,65,27,125,800.00,'2026-02-05 11:00:00','paypal'),
+	 (46,66,29,126,180.00,'2026-02-09 14:00:00','comptant'),
+	 (47,67,31,127,700.00,'2026-02-14 10:00:00','virement'),
+	 (48,68,33,128,550.00,'2026-02-19 15:00:00','carte'),
+	 (49,69,35,129,200.00,'2026-02-24 12:00:00','comptant'),
+	 (50,70,37,130,450.00,'2026-03-01 09:00:00','paypal');
+
+-- 10 nouvelles évaluations (IDs 41-50) → total 50 évaluations ✓
+INSERT INTO evaluation (id_evaluation,id_vente,id_evaluateur,id_evalue,note,commentaire,date_evaluation) VALUES
+	 (41,41,20,81,4.8,'Annonceur sérieux et très ponctuel','2026-01-15'),
+	 (42,42,22,82,4.5,'Bonne communication, produit conforme à l''annonce','2026-01-20'),
+	 (43,43,24,83,5.0,'Transaction parfaite, véhicule exactement comme décrit','2026-01-25'),
+	 (44,44,25,84,4.2,'Rapide et efficace, pas de mauvaises surprises','2026-01-30'),
+	 (45,45,27,85,4.9,'MacBook en parfait état, livraison rapide','2026-02-06'),
+	 (46,46,29,86,4.6,'Très accommodant pour la remise en mains propres','2026-02-10'),
+	 (47,47,31,87,4.3,'Bonne expérience d''achat, vendeur honnête','2026-02-15'),
+	 (48,48,33,88,4.7,'Réfrigérateur impeccable, emballage soigné','2026-02-20'),
+	 (49,49,35,89,4.4,'Guitare bien emballée, état conforme à la description','2026-02-25'),
+	 (50,50,37,90,4.8,'Excellent vendeur, vélo comme décrit dans l''annonce','2026-03-02');
+
+-- 10 nouvelles photos de produits (IDs 61-70)
+INSERT INTO photoproduit (id_photo,id_produit,url_photo,description,principale) VALUES
+	 (61,61,'iphone14pro_front.jpg','Vue de face de l''iPhone 14 Pro',true),
+	 (62,62,'table_chene.jpg','Table de salle à manger en chêne massif',true),
+	 (63,63,'rav4_2020_ext.jpg','Toyota RAV4 2020 côté conducteur',true),
+	 (64,64,'veste_cuir_noir.jpg','Veste en cuir noir taille L',true),
+	 (65,65,'macbook_air_m1.jpg','MacBook Air M1 ouvert sur bureau',true),
+	 (66,66,'chaise_ergo.jpg','Chaise ergonomique de profil',true),
+	 (67,67,'samsung_tv65.jpg','Téléviseur Samsung 65 pouces sur meuble',true),
+	 (68,68,'frigo_samsung_dp.jpg','Réfrigérateur Samsung double porte ouvert',true),
+	 (69,69,'guitare_yamaha_f310.jpg','Guitare acoustique Yamaha F310',true),
+	 (70,70,'trek_marlin.jpg','Vélo de montagne Trek Marlin 7',true);
+
+-- =============================================
+-- Mise à jour pour varier les données (réalisme)
+-- =============================================
+
+-- Varier les domaines d'expertise des 10 experts initiaux (tous avaient 'general')
+UPDATE expert SET domaine_expertise = 'Électronique',          date_certification = '2023-06-15' WHERE id_expert = 5;
+UPDATE expert SET domaine_expertise = 'Véhicules',             date_certification = '2022-09-20' WHERE id_expert = 6;
+UPDATE expert SET domaine_expertise = 'Mobilier',              date_certification = '2024-01-05' WHERE id_expert = 7;
+UPDATE expert SET domaine_expertise = 'Antiquités',            date_certification = '2023-03-11' WHERE id_expert = 8;
+UPDATE expert SET domaine_expertise = 'Bijouterie',            date_certification = '2022-07-28' WHERE id_expert = 9;
+UPDATE expert SET domaine_expertise = 'Art et décoration',     date_certification = '2023-10-04' WHERE id_expert = 10;
+UPDATE expert SET domaine_expertise = 'Mode et vêtements',     date_certification = '2024-02-17' WHERE id_expert = 11;
+UPDATE expert SET domaine_expertise = 'Sports et loisirs',     date_certification = '2023-05-30' WHERE id_expert = 12;
+UPDATE expert SET domaine_expertise = 'Instruments de musique',date_certification = '2022-11-22' WHERE id_expert = 13;
+UPDATE expert SET domaine_expertise = 'Livres et collectibles',date_certification = '2023-08-09' WHERE id_expert = 14;
+
+-- Varier les commentaires d'estimation (tous avaient 'Fair estimate')
+UPDATE estimation SET commentaire = 'Produit en très bon état, prix conforme au marché'      WHERE id_estimation IN (1,11,21,31,41,51);
+UPDATE estimation SET commentaire = 'Légères marques d''usure, valeur estimée correcte'      WHERE id_estimation IN (2,12,22,32,42,52);
+UPDATE estimation SET commentaire = 'Excellente condition, prix légèrement sous le marché'   WHERE id_estimation IN (3,13,23,33,43,53);
+UPDATE estimation SET commentaire = 'Prix un peu surestimé, ajustement recommandé'           WHERE id_estimation IN (4,14,24,34,44,54);
+UPDATE estimation SET commentaire = 'Bon état général, estimation conforme à la demande'     WHERE id_estimation IN (5,15,25,35,45,55);
+UPDATE estimation SET commentaire = 'Quelques défauts mineurs mais article fonctionnel'      WHERE id_estimation IN (6,16,26,36,46,56);
+UPDATE estimation SET commentaire = 'Article récent, forte demande sur le marché actuel'     WHERE id_estimation IN (7,17,27,37,47,57);
+UPDATE estimation SET commentaire = 'État acceptable, prix justifié pour la condition'       WHERE id_estimation IN (8,18,28,38,48,58);
+UPDATE estimation SET commentaire = 'Produit bien entretenu, correspond à la description'    WHERE id_estimation IN (9,19,29,39,49,59);
+UPDATE estimation SET commentaire = 'Légère dépréciation due à l''âge, prix raisonnable'    WHERE id_estimation IN (10,20,30,40,50,60);
+
+-- Varier les commentaires d'évaluation (tous avaient 'Smooth transaction')
+UPDATE evaluation SET commentaire = 'Vendeur sérieux et honnête, transaction sans problème' WHERE id_evaluation IN (1,11,21,31);
+UPDATE evaluation SET commentaire = 'Produit conforme à l''annonce, livraison rapide'        WHERE id_evaluation IN (2,12,22,32);
+UPDATE evaluation SET commentaire = 'Excellente communication, je recommande ce vendeur'     WHERE id_evaluation IN (3,13,23,33);
+UPDATE evaluation SET commentaire = 'Rendez-vous respecté, produit en bon état'              WHERE id_evaluation IN (4,14,24,34);
+UPDATE evaluation SET commentaire = 'Très bonne expérience, vendeur accommodant'             WHERE id_evaluation IN (5,15,25,35);
+UPDATE evaluation SET commentaire = 'Transaction rapide et efficace, aucun problème'         WHERE id_evaluation IN (6,16,26,36);
+UPDATE evaluation SET commentaire = 'Produit légèrement différent de la description'         WHERE id_evaluation IN (7,17,27,37);
+UPDATE evaluation SET commentaire = 'Bon vendeur dans l''ensemble, communication correcte'   WHERE id_evaluation IN (8,18,28,38);
+UPDATE evaluation SET commentaire = 'Satisfait de l''achat, prix équitable'                  WHERE id_evaluation IN (9,19,29,39);
+UPDATE evaluation SET commentaire = 'Superbe transaction, acheteur sérieux et ponctuel'      WHERE id_evaluation IN (10,20,30,40);
+
+-- Marquer 40 messages comme lus (réalisme : tous avaient lu=false)
+UPDATE message SET lu = true WHERE id_message IN (2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80);
