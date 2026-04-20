@@ -147,9 +147,17 @@ public class AcheteurFrame extends JFrame {
             message = "";
         }
 
+        String[] methodesP = {"carte", "comptant", "paypal", "virement"};
+        String methodeP = (String) JOptionPane.showInputDialog(this,
+                "M\u00e9thode de paiement :", "Paiement",
+                JOptionPane.QUESTION_MESSAGE, null, methodesP, methodesP[0]);
+        if (methodeP == null) {
+            return;
+        }
+
         try {
             BigDecimal prix = new BigDecimal(prixTexte.trim());
-            boolean venteConclue = insererProposition(idProduit, prix, message);
+            boolean venteConclue = insererProposition(idProduit, prix, message, methodeP);
             if (venteConclue) {
                 JOptionPane.showMessageDialog(this, "Proposition envoy\u00e9e. Le prix atteint l'estimation accept\u00e9e : la vente est conclue automatiquement.");
                 chargerDonnees();
@@ -163,7 +171,7 @@ public class AcheteurFrame extends JFrame {
         }
     }
 
-    private boolean insererProposition(int idProduit, BigDecimal prix, String message) throws Exception {
+    private boolean insererProposition(int idProduit, BigDecimal prix, String message, String methodeP) throws Exception {
         String nextIdSql = "SELECT COALESCE(MAX(id_proposition), 0) + 1 FROM proposition";
         String insertSql = "INSERT INTO proposition " +
                 "(id_proposition, id_produit, id_acheteur, prix_propose, message, date_proposition, statut) " +
@@ -188,7 +196,7 @@ public class AcheteurFrame extends JFrame {
                     stmt.executeUpdate();
                 }
 
-                boolean venteConclue = conclureVenteAutomatiqueSiPossible(conn, idProduit, idAcheteur, idProposition, prix);
+                boolean venteConclue = conclureVenteAutomatiqueSiPossible(conn, idProduit, idAcheteur, idProposition, prix, methodeP);
                 conn.commit();
                 return venteConclue;
             } catch (Exception e) {
@@ -199,13 +207,13 @@ public class AcheteurFrame extends JFrame {
     }
 
     private boolean conclureVenteAutomatiqueSiPossible(Connection conn, int idProduit, int idAcheteur,
-                                                       int idProposition, BigDecimal prix) throws Exception {
+                                                       int idProposition, BigDecimal prix, String methodeP) throws Exception {
         BigDecimal prixEstime = getPrixEstimeAccepte(conn, idProduit);
         if (prixEstime == null || prix.compareTo(prixEstime) < 0) {
             return false;
         }
 
-        creerVente(conn, idProduit, idAcheteur, idProposition, prix);
+        creerVente(conn, idProduit, idAcheteur, idProposition, prix, methodeP);
         marquerProduitVendu(conn, idProduit);
         accepterProposition(conn, idProposition);
         refuserAutresPropositions(conn, idProduit, idProposition);
@@ -229,7 +237,7 @@ public class AcheteurFrame extends JFrame {
     }
 
     private void creerVente(Connection conn, int idProduit, int idAcheteur, int idProposition,
-                            BigDecimal prixFinal) throws Exception {
+                            BigDecimal prixFinal, String methodeP) throws Exception {
         String existsSql = "SELECT COUNT(*) FROM vente WHERE id_proposition = ?";
         try (PreparedStatement stmt = conn.prepareStatement(existsSql)) {
             stmt.setInt(1, idProposition);
@@ -243,7 +251,7 @@ public class AcheteurFrame extends JFrame {
 
         String insertSql = "INSERT INTO vente " +
                 "(id_vente, id_produit, id_acheteur, id_proposition, prix_final, date_vente, methode_paiement) " +
-                "VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP, 'a_confirmer')";
+                "VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?)";
 
         try (PreparedStatement stmt = conn.prepareStatement(insertSql)) {
             stmt.setInt(1, getNextId(conn, "vente", "id_vente"));
@@ -251,6 +259,7 @@ public class AcheteurFrame extends JFrame {
             stmt.setInt(3, idAcheteur);
             stmt.setInt(4, idProposition);
             stmt.setBigDecimal(5, prixFinal);
+            stmt.setString(6, methodeP);
             stmt.executeUpdate();
         }
     }

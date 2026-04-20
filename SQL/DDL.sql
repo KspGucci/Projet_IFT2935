@@ -49,8 +49,8 @@ CREATE TABLE produit (
     prix_souhaite NUMERIC(10,2) NOT NULL,
     id_annonceur INTEGER NOT NULL,
     id_categorie INTEGER NOT NULL,
-    condition_produit VARCHAR(30) NOT NULL,
-    statut VARCHAR(30) NOT NULL,
+    condition_produit VARCHAR(30) NOT NULL CHECK (condition_produit IN ('neuf', 'comme_neuf', 'bon', 'usage', 'acceptable')),
+    statut VARCHAR(30) NOT NULL CHECK (statut IN ('publie', 'vendu', 'en_attente_estimation', 'estimation_refusee', 'retire')),
     date_soumission DATE NOT NULL DEFAULT CURRENT_DATE,
     date_publication DATE,
     FOREIGN KEY (id_annonceur) REFERENCES annonceur(id_annonceur),
@@ -76,7 +76,7 @@ CREATE TABLE proposition (
     prix_propose NUMERIC(10,2) NOT NULL,
     message VARCHAR(255),
     date_proposition TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    statut VARCHAR(30) NOT NULL DEFAULT 'en_attente',
+    statut VARCHAR(30) NOT NULL DEFAULT 'en_attente' CHECK (statut IN ('en_attente', 'acceptee', 'refusee')),
     FOREIGN KEY (id_produit) REFERENCES produit(id_produit),
     FOREIGN KEY (id_acheteur) REFERENCES acheteur(id_acheteur)
 );
@@ -88,7 +88,7 @@ CREATE TABLE vente (
     id_proposition INTEGER NOT NULL UNIQUE,
     prix_final NUMERIC(10,2) NOT NULL,
     date_vente TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    methode_paiement VARCHAR(30) NOT NULL,
+    methode_paiement VARCHAR(30) NOT NULL CHECK (methode_paiement IN ('carte', 'comptant', 'paypal', 'virement')),
     FOREIGN KEY (id_produit) REFERENCES produit(id_produit),
     FOREIGN KEY (id_acheteur) REFERENCES acheteur(id_acheteur),
     FOREIGN KEY (id_proposition) REFERENCES proposition(id_proposition)
@@ -99,7 +99,7 @@ CREATE TABLE evaluation (
     id_vente INTEGER NOT NULL,
     id_evaluateur INTEGER NOT NULL,
     id_evalue INTEGER NOT NULL,
-    note NUMERIC(2,1) NOT NULL,
+    note NUMERIC(2,1) NOT NULL CHECK (note >= 0 AND note <= 5),
     commentaire VARCHAR(255),
     date_evaluation DATE NOT NULL DEFAULT CURRENT_DATE,
     FOREIGN KEY (id_vente) REFERENCES vente(id_vente),
